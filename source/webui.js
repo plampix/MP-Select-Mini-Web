@@ -49,36 +49,40 @@ $(document).ready(function() {
 		movement = $(this).attr("data-movement");
 		distance = $(".movement .rate button.active").attr("data-rate");
 		axis = $(this).attr("data-axis");
-		comment = 'Move ' + axis + ' ' + distance + 'mm';
 
 		if (setPositioning == false) {
 			sendCmd('G91', 'Set to Relative Positioning');
 			setPositioning = true;
 		}
-
-		if (movement == 'up' || movement == 'left') {
-			distance = distance * -1;
-		}
-		if (axis == 'Z' && movement == 'down') {
-			comment = 'Raise Z ' + distance + 'mm';
-			distance += ' F300';
-		}
-		if (axis == 'Z' && movement == 'up') {
-			comment = 'Lower Z ' + distance + 'mm';
-			distance += ' F300';
-		}
-		if (axis == 'E' && movement == 'plus') {
-			comment = 'Extrude ' + distance + 'mm';
-			distance = distance + ' F180';
-		}
-		if (axis == 'E' && movement == 'minus') {
-			sendCmd(command + axis + '-' + distance, 'Retract ' + distance + 'mm');
-			return;
-		}
 		if (movement == 'disable') {
 			sendCmd('M18', 'Disable motor lock');
 			return;
 		}
+		switch (axis) {
+			case 'X':
+				if (movement == 'left') {
+					distance *= -1;
+				}
+				break;
+			case 'Y':
+				if (movement == 'down') {
+					distance *= -1;
+				}
+				break;
+			case 'Z':
+				if (movement == 'down') {
+					distance *= -1;
+				}
+				distance += ' F300';
+				break;
+			case 'E':
+				if (movement == 'down') {
+					distance *= -1;
+				}
+				distance += ' F180';
+				break;
+		}
+		comment = 'Move ' + axis + ' ' + distance + 'mm';
 
 		sendCmd(command + axis + distance, comment);
 	});

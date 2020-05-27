@@ -453,7 +453,8 @@ function buildFilnames(output) {
 		sdFilenames.forEach(function(name) {
 			itemHTML = '<li>';
 			itemHTML += '<span class="glyphicon glyphicon-print" aria-hidden="true" onclick="printFile(\'' + name + '\')"></span>';
-			itemHTML += '<span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="deleteFile(this)"></span>' + name;
+			itemHTML += name;
+			itemHTML += '<span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="deleteFile(this)"></span>';
 			itemHTML += '</li>';
 
 			$('.sd-files ul').append(itemHTML);

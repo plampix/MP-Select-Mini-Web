@@ -65,7 +65,7 @@ $(document).ready(function() {
 				}
 				break;
 			case 'Y':
-				if (movement == 'down') {
+				if (movement == 'up') {
 					distance *= -1;
 				}
 				break;

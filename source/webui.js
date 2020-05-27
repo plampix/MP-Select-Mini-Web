@@ -1,6 +1,6 @@
 /*
 Name: MP Select Mini Web Javascript
-URL: https://github.com/nokemono42/MP-Select-Mini-Web
+URL: https://github.com/plampix/MP-Select-Mini-Web
 */
 
 $(document).ready(function() {
@@ -61,9 +61,11 @@ $(document).ready(function() {
 		}
 		if (axis == 'Z' && movement == 'down') {
 			comment = 'Raise Z ' + distance + 'mm';
+			distance += ' F300';
 		}
 		if (axis == 'Z' && movement == 'up') {
 			comment = 'Lower Z ' + distance + 'mm';
+			distance += ' F300';
 		}
 		if (axis == 'E' && movement == 'plus') {
 			comment = 'Extrude ' + distance + 'mm';

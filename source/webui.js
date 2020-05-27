@@ -82,7 +82,7 @@ $(document).ready(function() {
 				distance += ' F180';
 				break;
 		}
-		comment = 'Move ' + axis + ' ' + distance + 'mm';
+		comment = 'Move ' + axis + ' ' + distance + 'mm ' + movement;
 
 		sendCmd(command + axis + distance, comment);
 	});

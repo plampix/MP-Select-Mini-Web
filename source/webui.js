@@ -49,6 +49,7 @@ $(document).ready(function() {
 		movement = $(this).attr("data-movement");
 		distance = $(".movement .rate button.active").attr("data-rate");
 		axis = $(this).attr("data-axis");
+		extra = "";
 
 		if (setPositioning == false) {
 			sendCmd('G91', 'Set to Relative Positioning');
@@ -70,21 +71,20 @@ $(document).ready(function() {
 				}
 				break;
 			case 'Z':
+				extra += " F300";
 				if (movement == 'down') {
 					distance *= -1;
 				}
-				distance += ' F300';
 				break;
 			case 'E':
 				if (movement == 'down') {
 					distance *= -1;
 				}
-				distance += ' F180';
 				break;
 		}
 		comment = 'Move ' + axis + ' ' + distance + 'mm ' + movement;
 
-		sendCmd(command + axis + distance, comment);
+		sendCmd(command + axis + distance + extra, comment);
 	});
 
 	$(".movement .rate button").click(function() {
